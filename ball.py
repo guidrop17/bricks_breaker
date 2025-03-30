@@ -43,5 +43,6 @@ class Ball:
         for block in blocks[:]:
             if self.rect.colliderect(block):
                 blocks.remove(block)
+                game_state.score += 10
                 self.movement[1] = -self.movement[1]
                 break

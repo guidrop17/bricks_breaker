@@ -5,6 +5,7 @@ from menu import Menu
 class Game:
     def __init__(self):
         game_state.initialize_objects()
+        game_state.score = 0
     
     def run(self):
         menu = Menu(game_state.screen)
