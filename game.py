@@ -43,6 +43,7 @@ class Game:
         for block in game_state.blocks:
             pygame.draw.rect(game_state.screen, game_state.colors["blocks"], block)
         self.display_score()
+        self.developed_by()
         pygame.display.flip()
     
     def display_score(self):
@@ -52,6 +53,12 @@ class Game:
         
         game_state.screen.blit(shadow, (12, 782))
         game_state.screen.blit(text, (10, 780))
+        
+    def developed_by(self):
+        font = pygame.font.Font(None, 20)
+        text = font.render(f"Desenvolvido por: {game_state.developed_by}", True, game_state.colors["ball"])
+        
+        game_state.screen.blit(text, (225, 780))
         
     def check_win(self):
         return len(game_state.blocks) == 0

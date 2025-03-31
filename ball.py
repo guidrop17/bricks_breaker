@@ -8,20 +8,31 @@ class Ball:
         self.movement = movement
         self.alive = True
         
+    def run_game_for_loser(self):
+        while game_state.running:
+            self.display_for_loser()
+            pygame.display.flip()
+            for event in pygame.event.get():            
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        Game().run()
+                        return
+        
     def display_for_loser(self):
         font = pygame.font.Font(None, 30)
         shadow = font.render(f"Você Perdeu", True, (50, 50, 100))
         text = font.render(f"Você Perdeu", True, game_state.colors["text"])
+        shadow_text_for_next = font.render(f"Pressione ESC para voltar ao menu", True, (50, 50, 100))
+        text_for_next = font.render(f"Pressione ESC para voltar ao menu", True, game_state.colors["text"])
         
-        game_state.screen.blit(shadow, (352, 402))
-        game_state.screen.blit(text, (350, 400))
+        game_state.screen.blit(shadow, (332, 402))
+        game_state.screen.blit(text, (330, 400))
+        game_state.screen.blit(shadow_text_for_next, (222, 452))
+        game_state.screen.blit(text_for_next, (220, 450))
     
     def move(self, player, blocks):
         if not self.alive:
-            self.display_for_loser()
-            pygame.display.flip()
-            pygame.time.delay(3000)
-            Game().run()
+            self.run_game_for_loser()
             return
         
         self.rect.x += self.movement[0]

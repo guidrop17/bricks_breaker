@@ -15,6 +15,8 @@ class GameState:
             "blocks": (255, 200, 50),
             "text": (255, 255, 255),
         }
+        
+        self.developed_by = "Guilherme Nascimento RU:4524389"
 
         self.running = True
         self.score = 0
